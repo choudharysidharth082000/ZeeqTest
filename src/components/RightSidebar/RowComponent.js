@@ -8,7 +8,7 @@ export default function RowComponent(props) {
         {props.SectionName&&<h1 className='text-2xl'>{props.SectionName}</h1>}
         {/* <div className={`grid grid-cols-${props.tiles} gap-10`}> */}
         <div className="grid gap-10" style={style}>
-            {props.tilesData.map((tile, index) => (<Tile id={index} title={tile.title} subTitle={tile.subTitle} value={tile.subTitle} changePercent={tile.changePercent}/>))}
+            {props.tilesData.map((tile, index) => (<Tile id={index} title={tile.title} subTitle={tile.subTitle} value={tile.subTitle} changePercent={tile.changePercent} type={tile.type}/>))}
         </div>
     </div>
   )

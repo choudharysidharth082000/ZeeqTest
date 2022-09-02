@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "./GlobalContext";
 
 const Tile = (props) => {
+  const context = useContext(GlobalContext);
   return (
     <div className="containorTile bg-white border border-gray-200 p-2 rounded-md flex flex-row mb-4 cursor-pointer">
       <div className="containor1 d-flex flex-col h-full flex-1">
@@ -11,7 +13,7 @@ const Tile = (props) => {
           <p className="text-xs font-normal text-gray-500">{props.subTitle}</p>
           <p className="text-lg text-gray-600 font-semibold pt-1">
             {props.value}{" "}
-            <span className="text-green-500 text-xs font-semibold">{props.changePercent}</span>
+            <span className="text-green-500 text-xs font-semibold">{props.type=='iso'?context.state.iso:context.state.unix}</span>
           </p>
         </div>
       </div>
