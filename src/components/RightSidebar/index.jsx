@@ -1,10 +1,31 @@
 import React from "react";
 import { useState } from "react";
 import Tile from "../Tile";
+import RowComponent from "./RowComponent";
 import TileMiddle from "../TileMiddle";
 
 const Right = (props) => {
+  const [rows, setRows] = useState([
+    { id: 1, name: "Row 1", tiles: 4, tilesData: [{title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}, {title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}, {title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}, {title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}] },
+    { id: 2, name: "Row 2", tiles: 2, tilesData: [{title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}, {title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}]},
+    { id: 3, tiles: 3, tilesData: [{title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}, {title: "Title", subTitle: 'SubTitle', value:"₹23,900", changePercent: "34%"}]},
+  ]);
   const [showSidebar, setShowSidebar] = useState(false);
+  const handleAddRows = () => {
+    let numberoftiles = prompt("Enter number of tiles");
+    let numberofPopulatedtiles = prompt("Enter number of tiles THAT ARE TO BE POPULATED");
+    let name = prompt("Enter the name of the row (if it is a named section)");
+    let tilesData = [];
+    for (let i = 0; i < numberofPopulatedtiles; i++) {
+      tilesData.push({
+        title: "Title",
+        subTitle: "SubTitle",
+        value: "₹23,900",
+        changePercent: "34%",
+      });
+    }
+    setRows([...rows, { id: rows.length + 1, name: name ,tiles: numberoftiles, tilesData }]);
+  }
   return (
     <>
       {showSidebar ? (
@@ -34,45 +55,18 @@ const Right = (props) => {
           showSidebar ? "translate-x-0 " : "translate-x-full"
         }`}
       >
-        <h3 className="mt-20 font-semibold text-white overflow-y-scroll">
-          {/* Header */}
-          <div className="header w-full p-2 flex flex-col">
-            {/* <h1 className="text-gray-600 text-4xl pl-8 mb-6">New Page</h1> */}
-            <div className="containorInput w-full p-10 flex flex-col">
-              <input className="text-4xl outline-none border-none text-gray-500 p-10 bg-[#efefef]" type="text" placeholder="Untitled" />
-            </div>
-            <div className="optiionsFlex flex justify-start bg-red-200 ">
-              <div className="containorCheckOptions">
-
-                </div>                            
-            </div>
-          </div>
-          {/* <div className="showCase w-full mt-3 p-2 flex justify-evenly flex-row flex-wrap">
-           <Tile />
-           <Tile />
-           <Tile />
-          </div>
-          <div className="showCase w-full mt-3 p-2 flex justify-evenly flex-row flex-wrap">
-            <TileMiddle
-              title="$35.4k"
-              image="https://www.datylon.com/hs-fs/hubfs/Datylon%20Website2020/Landing%20Pages/Pie%20Chart%20Maker/datylon-landing-page-pie-chart-maker-styling.gif?width=1246&height=934&name=datylon-landing-page-pie-chart-maker-styling.gif"
-            />
-            <TileMiddle
-              title="4,530"
-              image="https://user-images.githubusercontent.com/7336481/133036451-e1f2f12b-9e96-4a0f-8c69-4f630bb8ded3.gif"
-            />
-            <TileMiddle
-              title="4,530"
-              image="https://user-images.githubusercontent.com/7336481/133036451-e1f2f12b-9e96-4a0f-8c69-4f630bb8ded3.gif"
-            />
-            <TileMiddle
-              title="4,530"
-              image="https://user-images.githubusercontent.com/7336481/133036451-e1f2f12b-9e96-4a0f-8c69-4f630bb8ded3.gif"
-            />
-            
-          </div> */}
-        </h3>
+        <h1>Edit Home Screen </h1>
+        {rows.map((row) => (
+          <RowComponent
+            key={row.id}
+            id={row.id}
+            tilesData={row.tilesData}
+            tiles={row.tiles}
+            SectionName={row.name}
+          />
+        ))}
       </div>
+      <button onClick={handleAddRows} className="fixed bottom-10 right-10 z-50 bg-blue-500 text-white p-2 rounded-full">Add Rows</button>
     </>
   );
 };

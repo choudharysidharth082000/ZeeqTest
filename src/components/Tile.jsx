@@ -1,17 +1,17 @@
 import React from "react";
 
-const Tile = () => {
+const Tile = (props) => {
   return (
     <div className="containorTile bg-white border border-gray-200 p-2 rounded-md flex flex-row mb-4 cursor-pointer">
       <div className="containor1 d-flex flex-col h-full flex-1">
         <div className="mainHeader pt-1 pb-1 pl-1 pr-0 mb-2">
-          <h1 className="text-lg font-semibold text-gray-600">Total Sales</h1>
+          <h1 className="text-lg font-semibold text-gray-600">{props.title}</h1>
         </div>
         <div className="HeaerInfo p-1 flex flex-col">
-          <p className="text-xs font-normal text-gray-500">Calculated in last 7 days</p>
+          <p className="text-xs font-normal text-gray-500">{props.subTitle}</p>
           <p className="text-lg text-gray-600 font-semibold pt-1">
-            $25,980{" "}
-            <span className="text-green-500 text-xs font-semibold">15.6%</span>
+            {props.value}{" "}
+            <span className="text-green-500 text-xs font-semibold">{props.changePercent}</span>
           </p>
         </div>
       </div>
