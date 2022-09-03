@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from '../GlobalContext'
 
-const index = () => {
+const Index = () => {
+  const context = useContext(GlobalContext);
   return (
     <div className="Side w-[30%] h-screen bg-white">
       {/* Logo Part */}
@@ -10,8 +12,11 @@ const index = () => {
         {/* <div className="containorButtons w-full bg-red-200 flex justify-center items-center flex-col">
           <button className='bg-orange-500 text-white'>Dashboard</button>          
         </div> */}
+        <ul>
+          {context.state.rowsData.map((row) => (<h3>{row.name}</h3>))}
+        </ul>
     </div>
   )
 }
 
-export default index
+export default Index

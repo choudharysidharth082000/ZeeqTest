@@ -14,21 +14,21 @@ class GlobalProviderComponent extends Component {
         tiles: 4,
         tilesData: [
           {
-            title: "Title",
+            title: "Title 1",
             subTitle: "SubTitle",
             value: "₹23,900",
             changePercent: "34%",
             type: "iso",
           },
           {
-            title: "Title",
+            title: "Title 2",
             subTitle: "SubTitle",
             value: "₹23,900",
             changePercent: "34%",
             type: "iso",
           },
           {
-            title: "Title",
+            title: "Title 3",
             subTitle: "SubTitle",
             value: "₹23,900",
             changePercent: "34%",
@@ -91,16 +91,36 @@ class GlobalProviderComponent extends Component {
     console.log('In setInterval');
     // The logic of changing counter value to come soon.
     if(this.counter>=0){
-        this.updateData();
+        this.updateUnixData();
     }
     this.counter++;
   }, 2500);
-  updateData = () => {
+  interval = setInterval(() => {
+    console.log('In setInterval');
+    // The logic of changing counter value to come soon.
+    if(this.counter>=0){
+        this.updateISOData();
+    }
+    this.counter++;
+  }, 5000);
+  
+  updateISOData = () => {
     axios
       .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
       .then((res) => {
         this.setState({
           iso: res.data.datetime,
+          // unix: res.data.unixtime,
+        });
+      });
+  }
+
+  updateUnixData = () => {
+    axios
+      .get("https://worldtimeapi.org/api/timezone/Asia/Kolkata")
+      .then((res) => {
+        this.setState({
+          // iso: res.data.datetime,
           unix: res.data.unixtime,
         });
       });

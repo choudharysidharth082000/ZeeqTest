@@ -1,6 +1,6 @@
 //importing the files
-import SideBar from "../src/components/SideBar";
-import RightSidebar from "../src/components/RightSidebar";
+import SideBar from "./components/SideBar/Index";
+import RightSidebar from "./components/RightSidebar/Index";
 import MiddleContent from "./components/MiddleContent";
 import { GlobalProvider } from "./components/GlobalContext";
 export default function App() {
